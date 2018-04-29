@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Efecto lupa con jQuery</title>
+<style>
+#contLupa {
+    position: relative;
+    max-width: 424px; /* Ancho de la imagen pequeña + borde*/
+    height: auto;
+    margin: 20px auto;
+    border: 12px solid #999;
+    border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="contLupa">
+  <img id="miLupa" src="Lupa_p.jpg" alt="img con zoom" data-big="Lupa_g.jpg" data-overlay="Lupa_v2.png" />
+</div>
+
+<script src="jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="jquery.lupa.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function()
+{
+    $("#miLupa").lupa(
+    {
+        imgSrc: $("#miLupa").attr("data-big"), // camino de la versión de alta resolución de la imagen
+        lensShape: "circle", // forma de la lente (circle(círculo) / square(cuadrado))
+        lensSize: 180, // tamaño de la lente (in px)
+        borderSize: 4, // tamaño de la lente borde (in px)
+        borderColor: "#555", // color del borde de la lente (#hex)
+        borderRadius: 0, // radio de borde (opcional, solo si la forma es cuadrada)
+        imgOverlay: $("#miLupa").attr("data-overlay"), // ruta de la imagen de superposición (opcional)
+        overlayAdapt: true // true si la imagen de superposición tiene que adaptarse al tamaño de la lente (true/false)
+    });
+});
+</script>
+</body>
+</html>
