@@ -1,0 +1,28 @@
+@charset "utf-8";
+#nuevoEditor, #nuevaNoticia{
+	background:#E9E7E7;
+	border:1px solid #A6A3A3;
+	border-radius:20px;
+	margin:auto;
+	padding:20px;
+	width:500px;
+}
+#nuevoEditor>input, #nuevaNoticia>select, #nuevaNoticia>input, #nuevaNoticia>textarea{
+	font-size:1.2em;
+	margin-bottom:10px;
+	width:100%;
+}
+input[type=submit]{
+	background: -webkit-linear-gradient(#FFFFFF,#3ABC3A);
+	background: -o-linear-gradient(#FFFFFF,#3ABC3A);
+	background: -moz-linear-gradient(#FFFFFF,#3ABC3A);
+	background: linear-gradient(#FFFFFF,#3ABC3A);
+	border-radius:4px;
+	color:#000000;
+}
+input[type=submit]:hover{
+	background: -webkit-linear-gradient(#3ABC3A,#FFFFFF);
+	background: -o-linear-gradient(#3ABC3A,#FFFFFF);
+	background: -moz-linear-gradient(#3ABC3A,#FFFFFF);
+	background: linear-gradient(#3ABC3A,#FFFFFF);
+}
