@@ -1,0 +1,41 @@
+Base de dato:
+curso_php_pdo
+
+CREATE TABLE persona
+(
+    email varchar(255) not null,
+    pass text not null,
+    nombre varchar(255) not null,
+    a_paterno varchar(255) not null,
+    a_materno varchar(255) not null,
+    nacio date not null,
+    CONSTRAINT email_pk
+    PRIMARY KEY(email)
+    )ENGINE = InnoDB;
+
+CREATE TABLE noticia(
+	id INT AUTO_INCREMENT,
+	email_autor VARCHAR(255) not null,
+	index(email_autor),
+	fechahora DATETIME,
+	titulo TEXT not null,
+	contenido TEXT not null,
+	constraint id_noticia
+	PRIMARY KEY(id),
+	constraint email_autor
+	foreign key(email_autor)references
+	persona(email) ON DELETE CASCADE ON UPDATE CASCADE
+	)ENGINE = InnoDB
+
+CREATE TABLE comentarios(
+	id INT AUTO_INCREMENT,
+	idPublicacion INT not null,
+	index(idPublicacion),
+	fechahora DATETIME,
+	comentario TEXT not null,
+	constraint idComentario
+	PRIMARY KEY(id),
+	constraint idPublicacion
+	foreign key(idPublicacion)references
+	noticia(id) ON DELETE CASCADE ON UPDATE CASCADE
+	)ENGINE = InnoDB
