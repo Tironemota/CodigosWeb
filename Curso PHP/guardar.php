@@ -1,6 +1,5 @@
 <?php
 include('conex.php');
-
 class ClaseBaseDatos
 {
 	private $objetoBase = '';
@@ -46,10 +45,11 @@ class ClaseBaseDatos
 		//$titulo = $_POST['titulo'];
 		//$contenido = $_POST['contenido'];
 		// PROTEJO DE INYECCION CONVIRTIENDO LAS ETIQUETAS HTML A CARACTERES ESPECIALES
+		$email = htmlentities($_POST['email']);
 		$titulo = htmlentities($_POST['titulo']);
 		$contenido = htmlentities($_POST['contenido']);
 		$fecha = date("Y-m-d H:i:s");
-		$sql = "INSERT INTO noticia (email_autor,fechahora,tituloxx,contenido) VALUES ('mota','$fecha','$titulo','$contenido')";
+		$sql = "INSERT INTO noticia (email_autor,fechahora,titulo,contenido) VALUES ('$email','$fecha','$titulo','$contenido')";
 		if($this->objetoBase->query($sql)){
 			// REDIRECCIONAMOS
 			header("location: index.php?o=nuevaNoticia&mensaje=1");
