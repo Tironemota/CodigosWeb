@@ -35,8 +35,11 @@ class ClaseBaseDatos
 	}
 	public function nuevaNoticia()
 	{
-		$titulo = $_POST['titulo'];
-		$contenido = $_POST['contenido'];
+		//$titulo = $_POST['titulo'];
+		//$contenido = $_POST['contenido'];
+		// PROTEJO DE INYECCION CONVIRTIENDO LAS ETIQUETAS HTML A CARACTERES ESPECIALES
+		$titulo = htmlentities($_POST['titulo']);
+		$contenido = htmlentities($_POST['contenido']);
 		$fecha = date("Y-m-d H:i:s");
 		$sql = "INSERT INTO noticia (email_autor,fechahora,tituloxx,contenido) VALUES ('mota','$fecha','$titulo','$contenido')";
 		if($this->objetoBase->query($sql)){
