@@ -26,3 +26,11 @@ input[type=submit]:hover{
 	background: -moz-linear-gradient(#3ABC3A,#FFFFFF);
 	background: linear-gradient(#3ABC3A,#FFFFFF);
 }
+.textMensaje{
+	background:#F9F1D0;
+	border:1px solid #BCB8B8;
+	border-radius:20px;
+	margin:20px auto;
+	padding:20px;
+	width:300px;
+}
