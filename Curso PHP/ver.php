@@ -74,6 +74,7 @@ class ver
 			<h1><center>Nueva Noticia</center></h1>
 			<form action="guardar.php?o=nuevaNoticia" method="post" id="nuevaNoticia">
 				<select name="email">';
+				echo '<option value="">Seleccione editor...</option>';
 				foreach($arreglo as $editor)
 				{
 					echo '<option value="'.$editor['email'].'">'.$editor['email'].'</option>';
@@ -82,7 +83,7 @@ class ver
 				<textarea rows="4" cols="50" name="contenido" id="idcontenido" placeholder="Contenido..."></textarea>
 				<input type="submit" value="Guardar nueva noticia">
 			</form>';
-		if(isset($_GET['mensaje']))$mensaje = new mensaje($_GET['mensaje']);
+		//if(isset($_GET['mensaje']))$mensaje = new mensaje($_GET['mensaje']);
 	}
 	private function metodolistaNoticia()
 	{
