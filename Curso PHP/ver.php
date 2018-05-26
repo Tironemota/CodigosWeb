@@ -1,4 +1,5 @@
 <?php
+//MODIFICADO
 class ver
 {
 	public function __construct($metodo="inicio")
