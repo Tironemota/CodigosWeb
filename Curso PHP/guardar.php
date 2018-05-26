@@ -9,7 +9,10 @@ class ClaseBaseDatos
 		$this->objetoBase = new mysqli(SERVER,USUARIO,PASS,NOMBREBASE);
 		if($this->objetoBase->connect_errno)
 		{
-			echo "Fallo la conexion: ".$objetoMysqli->connect_error;
+			// VALIDAMOS CON MENSAJE DE ERROR
+			$o = $_GET["o"];
+			header("Location:index.php?o=$o&mensaje=0");
+			exit();
 		}
 	}
 	public function nuevoEditor()
@@ -23,14 +26,19 @@ class ClaseBaseDatos
 		$amaterno = $_POST["maternoform"];
 		$nacio = $_POST["nacioform"];
 		echo $correo;
-		$sql = "INSERT INTO persona (email,pass,nombre,a_paterno,a_materno,nacio) VALUES ('$correo','$pass','$nombre','$apaterno','$amaterno','$nacio')";
-		if($this->objetoBase->query($sql)){
+		// CREAMOS CONSULTA PREPARADA
+		$sentencia = $this->objetoBase->prepare("INSERT INTO persona (email,pass,nombre,a_paterno,a_materno,nacio) VALUES (?,?,?,?,?,?)");
+		// INDICAMOS CUANTOS CAMPOS Y DE QUE TIPOS SON
+		// SON 6 CAMPOS TIPO STRING
+		// i = entero, d = doble, s = texto, b = blob
+		$sentencia->bind_param("ssssss",$correo,$pass,$nombre,$apaterno,$amaterno,$nacio);
+		// EJECUTAMOS LA CONSULTA
+		if($sentencia->execute()){
 			// REDIRECCIONAMOS
-			//header("location: index.php");
-			header("location: index.php?o=nuevoEditor&mensaje=1");
-		}else{
-			//echo "ERROR: ".$this->objetoBase->error;
 			header("location: index.php?o=nuevoEditor&mensaje=2");
+		}else{
+			// REDIRECCIONAMOS
+			header("location: index.php?o=nuevoEditor&mensaje=1");
 		}
 	}
 	public function nuevaNoticia()
