@@ -90,7 +90,7 @@ class ver
 		echo "<h3>Detalle de noticia</h3>";
 		echo "<h1>".$arreglo['titulo']."</h1>";
 		echo "<p>".$arreglo['email_autor']."<br>".date('d/m/Y H:m:s',strtotime($arreglo['fechahora']))."</p>";
-		// PROTEJO INYECCION CONVIRTIENDO ETIQUETAS HTML
+		// PROTEJO DE INYECCION CONVIRTIENDO ETIQUETAS HTML A CARACTERES ESPECIALES
 		$protejoContenido = htmlentities($arreglo['contenido']);
 		echo "<div>".$protejoContenido."</div>";
 	}
