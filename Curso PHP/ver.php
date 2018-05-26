@@ -1,5 +1,4 @@
 <?php
-include('mensajes.php');
 class ver
 {
 	public function __construct($metodo="inicio")
@@ -36,18 +35,35 @@ class ver
 	}
 	private function metodoNuevoEditor()
 	{
+		// MOSTRAMOS MENSAJE SI EXISTE
+		$texMensaje = '';
+		$mensaje = (isset($_GET['mensaje']))?$_GET['mensaje']:"";
+		switch($mensaje){
+			case "0":
+				$texMensaje = "ERROR: en la conexión.";
+				break;
+			case "1":
+				$texMensaje = "ERROR: no se pudo guardar el registro.";
+				break;
+			case "2":
+				$texMensaje = "EXITO los datos fueron guardados.";
+		}
+		if(isset($_GET['mensaje'])){
+			echo '<div class="textMensaje">'.$texMensaje.'</div>';
+		}else{
+			echo "";
+		}
 		echo '
 			<h1><center>Nuevo Editor</center></h1>
 			<form action="guardar.php?o=nuevoEditor" method="post" id="nuevoEditor">
 				<input type="text" name="correoform" id="idcorreoform" placeholder="Correo..."><br>
-				<input type="text" name="passform" id="idpassform" placeholder="Password..."><br>
+				<input type="password" name="passform" id="idpassform" placeholder="Password..."><br>
 				<input type="text" name="nombreform" id="idnombreform" placeholder="Nombre..."><br>
 				<input type="text" name="maternoform" id="idmaternoform" placeholder="Apellido paterno..."></br>
 				<input type="text" name="maternoform" id="idmaternoform" placeholder="Apellido materno..."></br>
 				<input type="text" name="nacioform" id="idnacioform" placeholder="Nacimiento (YYYY-MM-DD)..."><br>
 				<input type="submit" value="Guardar datos del nuevo editor">
 			</form>';
-		if(isset($_GET['mensaje']))$mensaje = new mensaje($_GET['mensaje']);
 	}
 	private function metodoNuevaNoticia()
 	{
